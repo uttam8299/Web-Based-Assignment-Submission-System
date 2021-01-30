@@ -23,82 +23,43 @@ import javax.servlet.http.HttpSession;
 public class AddStudent extends HttpServlet {
      
     String password;
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out1 = response.getWriter();
-        
-        HttpSession session=request.getSession();
-        Integer Facultyid=Integer.parseInt(session.getAttribute("Facultyid").toString());
-        out1.println("Facultyid"+Facultyid);
-        
-        String username=request.getParameter("studentname");
-        String email=request.getParameter("studentmail");
-        Integer rollno=Integer.parseInt(request.getParameter("studentrollno"));
-        String no=Integer.toString(rollno);
-        password=username+no;
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con =DriverManager.getConnection("jdbc:mysql://localhost/OnlineAssignmentSubmission ?useSSL=false","root","root");
-            String query="Insert into student (student_name,password,student_email,faculty_id,studentrollno) values (?,?,?,?,?)";
-            PreparedStatement ps=con.prepareStatement(query);
-            ps.setString(1,username);
-            ps.setString(2,password);
-            ps.setString(3,email);
-            ps.setInt(4,Facultyid);
-            ps.setInt(5,rollno);
-            
-            int result=ps.executeUpdate();
-            if(result==1)
-            {
-              out1.println("Student Data Inserted in the Table");
-            }
-            else
-            {
-              out1.print("No Data inserted");
-            }    
-          } 
-        catch (Exception e) {
-            out1.print(e);
-            
-        } response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out1 = response.getWriter();
         
         HttpSession session=request.getSession();
-        Integer Facultyid=Integer.parseInt(session.getAttribute("Facultyid").toString());
-        out1.println("Facultyid"+Facultyid);
+        Integer Facultyid=Integer.parseInt(session.getAttribute("Faculty_id").toString());
+        //out1.println("Facultyid"+Facultyid);
         
         String username=request.getParameter("studentname");
         String email=request.getParameter("studentmail");
         Integer rollno=Integer.parseInt(request.getParameter("studentrollno"));
         String no=Integer.toString(rollno);
+        Integer sid = Integer.parseInt(request.getParameter("studentid"));
         password=username+no;
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con =DriverManager.getConnection("jdbc:mysql://localhost:3306/wbass?useSSL=false","root","");
-            String query="Insert into student(student_name,password,student_email,faculty_id,studentrollno) values (?,?,?,?,?)";
+            String query="Insert into student values (?,?,?,?,?,?)";
             PreparedStatement ps=con.prepareStatement(query);
-            ps.setString(1,username);
-            ps.setString(2,password);
-            ps.setString(3,email);
-            ps.setInt(4,Facultyid);
-            ps.setInt(5,rollno);
+            ps.setInt(1,sid);
+            ps.setString(2,username);
+            ps.setString(3,password);
+            ps.setString(4,email);
+            ps.setInt(5,Facultyid);
+            ps.setInt(6,rollno);
             
             int result=ps.executeUpdate();
             if(result == 1)
             {
-              out1.println("Student Data Inserted in the Table");
+                 response.setContentType("text/html");
+                  PrintWriter pw=response.getWriter();
+                  pw.println("<script type=\"text/javascript\">");
+                  pw.println("alert('Student Data Inserted Successfully!');");
+                  pw.println("</script>");
+              response.setHeader("Refresh", "0.5; URL=AddStudent.jsp");
             }
             else
             {

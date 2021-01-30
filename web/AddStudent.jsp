@@ -43,9 +43,10 @@
         <form action="AddStudent" method="POST">
            
                 <h2>Add Student</h2>     
+            Enter the Student ID:<input type="number" name="studentid" required/><br><br>
             Enter the Student name:<input type="text" name="studentname" required/><br><br>
             Enter the Student mail:<input type="text" name="studentmail" required/><br><br>
-            Enter the Student Rollno:<input type="text" name="studentrollno" required/><br><br>
+            Enter the Student Roll no:<input type="text" name="studentrollno" required/><br><br>
             <input type="submit" value="Add">
             
         </form>
