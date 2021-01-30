@@ -1,0 +1,151 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 Jan, 2021, 7:40:52 PM
+    Author     : Uttam Yadav
+*/
+.header{
+    align-content: center;
+}
+
+
+
+h1{
+    color: red;
+    margin: 10px;
+    padding-top: 32px;
+    }
+
+.header li{
+    border: black;  
+    list-style: none;
+    margin: 0px;
+    float : left;
+    padding: 4px;
+    
+}
+
+li a:hover, .course:hover .dropbtn {
+  background-color: red;
+}
+
+
+.course:hover{
+  display: block;
+}
+
+
+body{
+    
+    background-color: cornsilk;
+}
+
+
+li a, .dropbtn{
+ display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.course {
+  display: inline-block;
+}
+
+.courses-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.courses-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.courses-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.course:hover .courses-content {
+  display: block;
+}
+
+
+nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.footer{
+    background-color: yellow;
+    width: 100%;
+    height: 30px;
+}
+
+
+
+.main p{
+    font-family: sans-serif;
+    position: relative;
+}
+
+
+.marq{
+    color: red;
+    height: 50px;
+    
+}
+
+#logo{
+    float: left;
+    border-radius: 50%;
+    height: 5em;
+    display: block;
+    position: relative;
+}
+
+img{
+    border-radius: 50%;
+    display: block;
+    overflow:hidden;
+    
+}
+
+
+.upsc{
+    height: 100%;
+    display: block;
+}
+
+input{
+    margin: 2px;
+}
+
+textarea{
+    margin:2px;
+    width: 40%;
+    height: 50px;
+}
+
+.button:hover{
+    display:block;
+    background-color: cornflowerblue;
+}
+
+.dropbtn{
+    background-color: yellow;
+    border-radius: 10%;
+}
