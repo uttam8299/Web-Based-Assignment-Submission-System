@@ -47,11 +47,11 @@
               }
     </style>
     </head>
-    <body>
+    
         <h1 class="blinking"><center>Welcome Student!</center></h1>
-        <sql:setDataSource var="OnlineAssignmentDataSource" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/wbass?useSSL=false" user="root" password="" scope="page"/>
-        <sql:query var="ViewAssignmentQuery" dataSource="${OnlineAssignmentDataSource}" scope="page">
-            select Assignment_id,Assignment_topic,Submission_date,FileUpload from Assignment;
+        <sql:setDataSource var="wbass" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/wbass?useSSL=false" user="root" password="" scope="page"/>
+        <sql:query var="ViewAssignmentQuery" dataSource="${wbass}" scope="page">
+            select Assignment_topic,Submission_date,FileUpload from Assignment;
         </sql:query>
             <div class="card">
              
@@ -80,5 +80,5 @@
                 </c:forEach>
             </table>
             </div>
-    </body>
+    
 </html>

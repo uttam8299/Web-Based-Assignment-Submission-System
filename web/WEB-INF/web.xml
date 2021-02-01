@@ -12,6 +12,10 @@
         <servlet-name>AddStudent</servlet-name>
         <servlet-class>AddStudent</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AssignmentGenerate</servlet-name>
+        <servlet-class>AssignmentGenerate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StudentLogin</servlet-name>
         <url-pattern>/StudentLogin</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>AddStudent</servlet-name>
         <url-pattern>/AddStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssignmentGenerate</servlet-name>
+        <url-pattern>/AssignmentGenerate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
