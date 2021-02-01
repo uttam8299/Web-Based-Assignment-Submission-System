@@ -16,10 +16,6 @@
         <servlet-name>AssignmentGenerate</servlet-name>
         <servlet-class>AssignmentGenerate</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ViewAssignment</servlet-name>
-        <servlet-class>ViewAssignment</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>StudentLogin</servlet-name>
         <url-pattern>/StudentLogin</url-pattern>
@@ -35,10 +31,6 @@
     <servlet-mapping>
         <servlet-name>AssignmentGenerate</servlet-name>
         <url-pattern>/AssignmentGenerate</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ViewAssignment</servlet-name>
-        <url-pattern>/ViewAssignment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

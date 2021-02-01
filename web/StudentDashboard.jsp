@@ -70,7 +70,7 @@
                         <td>
                             
                             
-                            <a href="${pageContext.servletContext.contextPath }/ViewAssignment?Assignment_topic=${row.Assignment_topic}">Download Assignment File<a/><br>
+                            <a href="${pageContext.servletContext.contextPath }/ViewAssignment?Assignment_id=${row.Assignment_id}">Download Assignment File<a/><br>
                             
                                     
                         </td>
