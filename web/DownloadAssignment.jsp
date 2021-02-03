@@ -24,7 +24,6 @@ try{
     if(rs.next()){
         Blob blob = rs.getBlob("FileUpload");
         byte byteArray[] = blob.getBytes(1, (int)blob.length());
- 
         response.setContentType("application/pdf");
         OutputStream os = response.getOutputStream();
         os.write(byteArray);

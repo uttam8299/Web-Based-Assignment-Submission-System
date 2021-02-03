@@ -41,7 +41,7 @@ public class AssignmentGenerate extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out1 = response.getWriter(); 
         
-        String message = null;
+        //String message = null;
         HttpSession session=request.getSession();
         String topic=request.getParameter("Assignmenttopic");
         String desc=request.getParameter("AssignmentDesc");
@@ -82,7 +82,12 @@ public class AssignmentGenerate extends HttpServlet {
             // sends the statement to the database server
             int row = statement.executeUpdate();
             if (row > 0) {
-                message = "File uploaded and saved into database";
+                response.setContentType("text/html");
+                  PrintWriter pw=response.getWriter();
+                  pw.println("<script type=\"text/javascript\">");
+                  pw.println("alert('Assignment Generated Successfully!');");
+                  pw.println("</script>");
+                  response.setHeader("Refresh", "0.1; URL=AssignmentGenerate.jsp");
             }
         }
         catch (Exception e) {
@@ -99,7 +104,7 @@ public class AssignmentGenerate extends HttpServlet {
             out.println("<title>Servlet AssignmentGenerate</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + message + "</h1>");
+           // out.println("<h1>" + message + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
