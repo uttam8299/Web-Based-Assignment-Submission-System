@@ -69,7 +69,7 @@
                         <td>
                             <a href="${pageContext.servletContext.contextPath }/DownloadAssignment.jsp?Assignment_id=${row.Assignment_id}">Download Assignment File<a/><br>         
                         </td>
-                        <td><a href="UploadStudentAssignment.jsp">Upload the Assignment <c:out value="${row.Assignment_topic}"/></a></td>
+                        <td><a href="AssignmentUpload.jsp">Upload the Assignment <c:out value="${row.Assignment_topic}"/></a></td>
                    
                     </tr>
                 </c:forEach>

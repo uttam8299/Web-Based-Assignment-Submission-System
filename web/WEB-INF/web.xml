@@ -17,8 +17,16 @@
         <servlet-class>AssignmentGenerate</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AssignmentUpload</servlet-name>
+        <servlet-class>AssignmentUpload</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ViewAssignment</servlet-name>
         <servlet-class>ViewAssignment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Download</servlet-name>
+        <servlet-class>Download</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>StudentLogin</servlet-name>
@@ -37,8 +45,16 @@
         <url-pattern>/AssignmentGenerate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AssignmentUpload</servlet-name>
+        <url-pattern>/AssignmentUpload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ViewAssignment</servlet-name>
         <url-pattern>/ViewAssignment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Download</servlet-name>
+        <url-pattern>/Download</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

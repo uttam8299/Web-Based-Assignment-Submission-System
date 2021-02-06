@@ -20,8 +20,10 @@
             </test-roots>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>AssignmentUpload</word>
             <word>FileUpload</word>
             <word>servlet</word>
+            <word>studentrollno</word>
         </spellchecker-wordlist>
     </configuration>
 </project>
