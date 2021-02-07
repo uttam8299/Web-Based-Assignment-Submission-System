@@ -35,7 +35,7 @@
         <form action="AssignmentUpload" method="POST" enctype="multipart/form-data">
            <center>
             <h2>Upload your Assignment</h2><br><br>
-            Enter the File Name:<input type="text" name="Filename"><br><br>
+            Enter the File Name:<input type="text" name="FileName"><br><br>
              <input type="file" name="fileupload" required/><br><br>
              <input type="submit" value="submit">
            </center>

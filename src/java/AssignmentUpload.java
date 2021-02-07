@@ -10,8 +10,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -40,86 +39,68 @@ public class AssignmentUpload extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out1 = response.getWriter();
-        String message=null;
+        PrintWriter out1 = response.getWriter(); 
+        
         HttpSession session=request.getSession();
-        int Assigment_id=Integer.parseInt(session.getAttribute("Assigment_id").toString());
-        out1.println("Assigment_id"+Assigment_id);
-        //Error:from ViewAssignment.java Current Session Assignment ID is Taking always at tha start hence
-        
         int Student_id=Integer.parseInt(session.getAttribute("Studentid").toString());
-        out1.println("Studentid"+Student_id);
+       // String name=(String) session.getAttribute("Student_name");
+        //String message = null;
+        String topic=request.getParameter("FileName");
         
-        String FileName=request.getParameter("Filename");
         
-        
-        Date date=new Date();
-        java.sql.Date sqlDate= new java.sql.Date(date.getTime());
-        
-        InputStream input=null;
-        Part filePart=request.getPart("fileupload");
-        
+        InputStream inputStream = null; // input stream of the upload file
+        // obtains the upload file part in this multipart request
+        Part filePart = request.getPart("fileupload");
         if (filePart != null) {
-            input = filePart.getInputStream();
+            // prints out some information for debugging
+            System.out.println(filePart.getName());
+            System.out.println(filePart.getSize());
+            System.out.println(filePart.getContentType());
+             
+            // obtains input stream of the upload file
+            inputStream = filePart.getInputStream();
         }
-        try {
+        
+        try 
+        {
+            Date date=new Date();
+            java.sql.Date sqlDate= new java.sql.Date(date.getTime());
+            
+            
             Class.forName("com.mysql.jdbc.Driver");
             Connection con =DriverManager.getConnection("jdbc:mysql://localhost:3306/wbass?useSSL=false","root","");
-            String query1="select AssignmentFileUpload from AssignmentUpload where Student_id='"+Student_id+"' and AssignmentGiven_id='"+Assigment_id+"'";
-            Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery(query1);
-            out1.println("First Part Executed");
             
-            if(rs!=null){
-              String query2="delete from AssignmentUpload where Student_id='"+Student_id+"' and AssignmentGiven_id='"+Assigment_id+"' ";
-              Statement stmt1=con.createStatement();
-              int r=stmt1.executeUpdate(query2);
-              out1.println("No of Rows Deleted"+r);
+           // String name = "select student_name from Student where Student_id=?" ;
+            
+            String sql = "INSERT INTO AssignmentUpload(Student_id, SubmittedDate,FileName,AssignmentFileUpload) values (?,?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(sql);
+            //statement.setInt(1,Assigment_id);
+            
+            statement.setInt(1, Student_id);
+            statement.setDate(2,sqlDate);
+            statement.setString(3,topic);
+            
+            
+            if (inputStream != null) {
+                // fetches input stream of the upload file for the blob column
+                statement.setBlob(4, inputStream);
             }
-            
-           
-            String query="Insert into  AssignmentUpload(AssignmentGiven_id,SubmittedDate,AssignmentFileUpload,Student_id,Filename) values(?,?,?,?,?)";
-            
-            PreparedStatement ps=con.prepareStatement(query);
-            out1.println("Second Part");
-            ps.setInt(1,Assigment_id);
-            ps.setDate(2, sqlDate);
-            
-            //Bug 2:Always Inserting the Same File At the Start fisrt File
-            if(input!=null){
-             ps.setBlob(3,input);
-                
-            }
-            ps.setInt(4,Student_id);
-            ps.setString(5,FileName);
-            
-            int row = ps.executeUpdate();
+ 
+            // sends the statement to the database server
+            int row = statement.executeUpdate();
             if (row > 0) {
-                 message = "File uploaded and saved into database";
+                response.setContentType("text/html");
+                  PrintWriter pw=response.getWriter();
+                  pw.println("<script type=\"text/javascript\">");
+                  pw.println("alert('Assignment Submitted Successfully!');");
+                  pw.println("</script>");
+                  response.setHeader("Refresh", "0.1; URL=AssignmentUpload.jsp");
             }
-//            session.invalidate();
-           
-//            String query3="select StudentUploadAssignment_id from StudentUploadAssignment where Student_id='"+Student_id+"'";
-//            Statement stmt3=con.createStatement();
-//            ResultSet rs3=stmt3.executeQuery(query3);
-            
-//            if(rs3.next())
-//            {
-//                int i=rs3.getInt("StudentUploadAssignment_id");
-//                out1.println("StudentUploadAssignment_id"+i);
-//                session.setAttribute("StudentUploadAssignment_id",i);
-//               
-//            }    
-            
-         
-            
-            
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-    
-        
+        catch (Exception e) {
+            out1.print(e);
+            
+        }
         
         
         try (PrintWriter out = response.getWriter()) {
@@ -127,10 +108,10 @@ public class AssignmentUpload extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UploadStudentAssignment</title>");            
+            out.println("<title>Servlet AssignmentGenerate</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + message + "</h1>");
+           // out.println("<h1>" + message + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }

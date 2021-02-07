@@ -52,10 +52,10 @@
                 <td><c:out value="${row.studentrollno}"/></td>
                 <td>
                     <sql:query var="ViewAssignmentQuery" dataSource="${wbass}"scope="page">
-                        select Assignment_id,FileUpload,AssignmentGiven_id from AssignmentUpload where Student_id in (select student_id from student where studentrollno="${rollno}");
+                        select FileName,AssignmentFileUpload from AssignmentUpload where Student_id in (select student_id from student where studentrollno="${rollno}");
                     </sql:query>
                     <c:forEach var="row" items="${ViewAssignmentQuery.rows}">
-                        <h4>Assignment Id:<c:out value="${row.AssignmentGiven_id}"/></h4>
+                        <h4>FileName:<c:out value="${row.FileName}"/></h4>
 <!--                         StudentUploadAssignment_id ke hisaab se and very important part-->
                         <a href="${pageContext.servletContext.contextPath }/Download?AssignmentUpload_id=${row.AssignmentUpload_id}">Download Student Assignment File</a><br>
                     </c:forEach>
