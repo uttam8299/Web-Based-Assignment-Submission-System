@@ -25,11 +25,7 @@
                 box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
             }
             body{
-                background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
-                background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-                background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-                background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-                background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
+                background-color:lightsteelblue;
               }
     </style>
     </head>
