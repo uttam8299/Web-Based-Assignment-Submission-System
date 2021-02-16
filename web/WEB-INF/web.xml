@@ -32,6 +32,10 @@
         <servlet-name>DownloadFile</servlet-name>
         <servlet-class>DownloadFile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddMarks</servlet-name>
+        <servlet-class>AddMarks</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>StudentLogin</servlet-name>
         <url-pattern>/StudentLogin</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>DownloadFile</servlet-name>
         <url-pattern>/DownloadFile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddMarks</servlet-name>
+        <url-pattern>/AddMarks</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
